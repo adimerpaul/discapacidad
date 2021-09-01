@@ -52,15 +52,63 @@
               <q-item-label caption>Ingresar al sistema</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item to="locales"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+          <q-item to="importar"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+            <q-item-section avatar>
+              <q-icon name="upload" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label> Importar</q-item-label>
+              <q-item-label caption>Controlar Importacion</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item to="user"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+            <q-item-section avatar>
+              <q-icon name="people" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label> Usuarios</q-item-label>
+              <q-item-label caption>Controlar Importacion</q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-item to="pago"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+            <q-item-section avatar>
+              <q-icon name="money" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label> Pago</q-item-label>
+              <q-item-label caption>Control de pagos</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item to="pagorealizado"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+            <q-item-section avatar>
+              <q-icon name="shop" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label> Pagos Realizados</q-item-label>
+              <q-item-label caption>Control de pagos</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item to="pagofaltantes"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
             <q-item-section avatar>
               <q-icon name="code" />
             </q-item-section>
             <q-item-section>
-              <q-item-label> Locales</q-item-label>
-              <q-item-label caption>Controlar locales</q-item-label>
+              <q-item-label> Pagos Faltantes</q-item-label>
+              <q-item-label caption>Control de pagos</q-item-label>
             </q-item-section>
           </q-item>
+          <q-item to="mispagos"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+            <q-item-section avatar>
+              <q-icon name="paid" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label> Mis pagos </q-item-label>
+              <q-item-label caption>Control de de pagos realizados</q-item-label>
+            </q-item-section>
+          </q-item>
+
+
           <q-item @click="logout"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
             <q-item-section avatar>
               <q-icon name="logout" />
