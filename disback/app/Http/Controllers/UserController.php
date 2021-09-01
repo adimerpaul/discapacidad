@@ -23,13 +23,7 @@ class UserController extends Controller
         $token=$user->createToken('auth_token')->plainTextToken;
         return response()->json(['token'=>$token,'user'=>$user],200);;
     }
-    public function pass(Request $request,User $user){
-//        return $request->password;
-        $user->update([
-            'password'=>Hash::make($request->password)
-        ]);
-        return $user;
-    }
+
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
         return response()->json(['res'=>'salido exitosamente'],200);
@@ -48,6 +42,9 @@ class UserController extends Controller
     public function index()
     {
         //
+        return User::
+        with('permisos')
+        ->where('id','!=',1)->get();
     }
 
     /**
@@ -69,6 +66,22 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $user=new User();
+        $user->name=$request->name;
+        $user->carnet=$request->cedula;
+        $user->celular=$request->celular;
+        $user->email=$request->email;
+        $user->password= Hash::make($request->password) ;
+        $user->fechalimite=$request->fechalimite;
+        $user->save();
+        $permisos= array();
+        foreach ($request->permisos as $permiso){
+//            echo $permiso['estado'].'  ';
+            if ($permiso['estado']==true)
+                $permisos[]=$permiso['id'];
+        }
+        $permiso = Permiso::find($permisos);
+        $user->permisos()->attach($permiso);
     }
 
     /**
@@ -102,17 +115,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user->update($request->all());
+        return $user;
+    }
+    public function updatepermisos(Request $request,User $user){
+        $permisos= array();
+        foreach ($request->permisos as $permiso){
+            if ($permiso['estado']==true)
+                $permisos[]=$permiso['id'];
+        }
+        $permiso = Permiso::find($permisos);
+        $user->permisos()->detach();
+        $user->permisos()->attach($permiso);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function pass(Request $request,User $user){
+//        return $request->password;
+        $user->update([
+            'password'=>Hash::make($request->password)
+        ]);
+        return $user;
+    }
+    public function destroy(User $user){
+        $user->delete();
     }
 }
