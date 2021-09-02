@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Permiso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -68,7 +70,7 @@ class UserController extends Controller
         //
         $user=new User();
         $user->name=$request->name;
-        $user->carnet=$request->cedula;
+        $user->carnet=$request->carnet;
         $user->celular=$request->celular;
         $user->email=$request->email;
         $user->password= Hash::make($request->password) ;
@@ -113,7 +115,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,User $user)
     {
         $user->update($request->all());
         return $user;
