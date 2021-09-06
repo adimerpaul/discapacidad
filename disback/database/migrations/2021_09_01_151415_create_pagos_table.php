@@ -29,7 +29,7 @@ class CreatePagosTable extends Migration
             $table->double("monto")->default(0);
             $table->string("estado")->default('PENDIENTE');
             $table->string("foto")->default('');
-            $table->unsignedBigInteger("user_id")->nullable();
+            $table->unsignedBigInteger("user_id")->nullable()->default(1);
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger("responsable_id")->nullable();
             $table->foreign('responsable_id')->references('id')->on('responsables');

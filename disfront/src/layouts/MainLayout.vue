@@ -14,7 +14,7 @@
         <q-toolbar-title>
           {{$store.state.login.user.name}}
         </q-toolbar-title>
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Discapacitados {{ $q.version }}</div>
       </q-toolbar>
       <div class="q-px-lg q-pt-xl q-mb-md">
         <div class="text-h3">G.A.M.O.</div>

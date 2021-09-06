@@ -7,6 +7,7 @@
       icon="add_circle"
       class="q-mb-xs"
     />
+
     <q-dialog v-model="alert">
       <q-card style="max-width: 80%; width: 50%">
         <q-card-section class="bg-green-14 text-white">
@@ -25,22 +26,16 @@
                   lazy-rules
                   :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
                 />
-                <q-input
-                  filled
-                  v-model="dato.carnet"
-                  type="text"
-                  label="Carnet Identidad "
-                  hint="Ingresar Numero de Carnet"
-                  lazy-rules
-                  :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
-                />
-                <q-input
-                  filled
-                  v-model="dato.celular"
-                  type="text"
-                  label="Celular "
-                  hint="Ingresar Numero de celular"
-                />
+                <!--                <q-input-->
+                <!--                  filled-->
+                <!--                  v-model="dato.codigo"-->
+                <!--                  type="text"-->
+                <!--                  label="Codigo "-->
+                <!--                  hint="Ingresar codigo"-->
+                <!--                  lazy-rules-->
+                <!--                  :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"-->
+                <!--                />-->
+
                 <q-input
                   filled
                   v-model="dato.email"
@@ -53,6 +48,24 @@
 
                 <q-input
                   filled
+                  v-model="dato.carnet"
+                  type="text"
+                  label="Carnet identidad"
+                  hint="Carnet identidad"
+                  lazy-rules
+                  :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
+                />
+                <q-input
+                  filled
+                  v-model="dato.celular"
+                  type="text"
+                  label="Celular"
+                  hint="Celular persona"
+                  lazy-rules
+                  :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
+                />
+                <q-input
+                  filled
                   v-model="dato.password"
                   type="password"
                   label="Contraseña"
@@ -60,10 +73,19 @@
                   lazy-rules
                   :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
                 />
+                <!--                <q-select-->
+                <!--                  filled-->
+                <!--                  label="Unidad"-->
+                <!--                  v-model="dato.unid_id"-->
+                <!--                  :options="unidades"-->
+                <!--                  option-label="nombre"-->
+                <!--                  option-value="id"-->
+                <!--                />-->
                 <q-input
                   filled
                   label="Fecha limite"
                   type="date"
+                  hint="Fecha limite de acceso"
                   v-model="dato.fechalimite"
                 />
               </div>
@@ -82,11 +104,7 @@
       </q-card>
     </q-dialog>
 
-    <q-table :filter="filter" title="Usuarios" 
-      :rows="data" 
-      :columns="columns" 
-      row-key="name" 
-      :rows-per-page-options="[50,100]">
+    <q-table :filter="filter" title="Usuarios" :rows="data" :columns="columns" row-key="name" :rows-per-page-options="[50,100]">
       <template v-slot:top-right>
         <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
           <template v-slot:append>
@@ -99,6 +117,18 @@
           <q-td key="name" :props="props">
             {{props.row.name}}
           </q-td>
+          <!--          <q-td key="unid" :props="props">-->
+          <!--            {{props.row.unid.nombre}}-->
+          <!--          </q-td>-->
+          <!--          <q-td key="codigo" :props="props">-->
+          <!--            {{props.row.codigo}}-->
+          <!--          </q-td>-->
+          <q-td key="celular" :props="props">
+            {{props.row.celular}}
+          </q-td>
+          <q-td key="carnet" :props="props">
+            {{props.row.carnet}}
+          </q-td>
           <q-td key="email" :props="props">
             {{props.row.email}}
           </q-td>
@@ -106,21 +136,21 @@
             {{props.row.fechalimite}}
           </q-td>
           <q-td key="opcion" :props="props">
-          <q-btn
+            <q-btn
               dense
               round
               flat
               color="yellow"
               @click="editRow(props)"
               icon="edit"
-          />
+            />
             <q-btn
               dense
               round
               flat
-            color="positive"
-            @click="cambiopass(props)"
-            icon="vpn_key"
+              color="positive"
+              @click="cambiopass(props)"
+              icon="vpn_key"
             />
             <q-btn
               dense
@@ -140,10 +170,64 @@
             ></q-btn>
           </q-td>
 
+          <!--          <q-td key="opcion" :props="props">-->
+          <!--            <q-btn-->
+          <!--              dense-->
+          <!--              round-->
+          <!--              flat-->
+          <!--              color="green"-->
+          <!--              @click="addRow(props)"-->
+          <!--              icon="playlist_add"-->
+          <!--            ></q-btn>-->
+          <!--            <q-btn-->
+          <!--              dense-->
+          <!--              round-->
+          <!--              flat-->
+          <!--              color="green"-->
+          <!--              @click="verRow(props)"-->
+          <!--              icon="list"-->
+          <!--            ></q-btn>-->
+          <!--            <q-btn-->
+          <!--              dense-->
+          <!--              round-->
+          <!--              flat-->
+          <!--              color="yellow"-->
+          <!--              @click="editRow(props)"-->
+          <!--              icon="edit"-->
+          <!--            ></q-btn>-->
+          <!--            <q-btn-->
+          <!--              dense-->
+          <!--              round-->
+          <!--              flat-->
+          <!--              color="red"-->
+          <!--              @click="deleteRow(props)"-->
+          <!--              icon="delete"-->
+          <!--            ></q-btn>-->
+          <!--          </q-td>-->
         </q-tr>
       </template>
+      <!--      <template v-slot:body-cell-opcion="props">-->
+      <!--        <q-td :props="props">-->
+      <!--        <q-btn-->
+      <!--            dense-->
+      <!--            round-->
+      <!--            flat-->
+      <!--            color="yellow"-->
+      <!--            @click="editRow(props)"-->
+      <!--            icon="edit"-->
+      <!--          ></q-btn>-->
+      <!--          <q-btn-->
+      <!--            dense-->
+      <!--            round-->
+      <!--            flat-->
+      <!--            color="red"-->
+      <!--            @click="deleteRow(props)"-->
+      <!--            icon="delete"-->
+      <!--          ></q-btn>-->
+      <!--        </q-td>-->
+      <!--      </template>-->
     </q-table>
-<!--    {{permisos2}}-->
+    <!--    {{permisos2}}-->
     <q-dialog v-model="dialog_mod">
       <q-card style="max-width: 80%; width: 50%">
         <q-card-section class="bg-warning text-white">
@@ -160,24 +244,15 @@
               lazy-rules
               :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
             />
-            <q-input
-              filled
-              v-model="dato2.carnet"
-              type="text"
-              label="Carnet Identidad"
-              hint="Ingresar numero de Carnet"
-              lazy-rules
-              :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
-            />
-            <q-input
-              filled
-              v-model="dato2.celular"
-              type="text"
-              label="Celular"
-              hint="Ingresar Numero celular"
-              lazy-rules
-              :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
-            />
+            <!--            <q-input-->
+            <!--              filled-->
+            <!--              v-model="dato2.codigo"-->
+            <!--              type="text"-->
+            <!--              label="Codigo "-->
+            <!--              hint="Ingresar codigo"-->
+            <!--              lazy-rules-->
+            <!--              :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"-->
+            <!--            />-->
             <q-input
               filled
               v-model="dato2.email"
@@ -187,6 +262,33 @@
               lazy-rules
               :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
             />
+            <q-input
+              filled
+              v-model="dato2.carnet"
+              type="text"
+              label="Carnet"
+              hint="Carnet de identidad"
+              lazy-rules
+              :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
+            />
+            <q-input
+              filled
+              v-model="dato2.celular"
+              type="text"
+              label="Celular"
+              hint="Celular"
+              lazy-rules
+              :rules="[(val) => (val && val.length > 0) || 'Por favor ingresa datos']"
+            />
+            <!--            <pre>{{dato2}}</pre>-->
+            <!--            <q-select-->
+            <!--              filled-->
+            <!--              label="Unidad"-->
+            <!--              v-model="dato2.unid_id"-->
+            <!--              :options="unidades"-->
+            <!--              option-label="nombre"-->
+            <!--              option-value="id"-->
+            <!--            />-->
 
             <q-input
               filled
@@ -204,7 +306,7 @@
     </q-dialog>
 
 
-   <q-dialog v-model="dialog_del">
+    <q-dialog v-model="dialog_del">
       <q-card>
         <q-card-section class="row items-center">
           <q-avatar icon="clear" color="red" text-color="white" />
@@ -224,11 +326,11 @@
         </q-card-section>
         <q-card-section>
           <q-form @submit.prevent="updatepermisos">
-<!--          v-on:click.native="updatepermiso(permiso)"-->
-          <q-checkbox style="width: 100%"  v-for="(permiso,index) in permisos2" :key="index" :label="permiso.nombre" v-model="permiso.estado" />
-          <!--          <q-form>-->
-<!--&lt;!&ndash;            <q-checkbox v-model="permisos" />&ndash;&gt;-->
-<!--          </q-form>-->
+            <!--          v-on:click.native="updatepermiso(permiso)"-->
+            <q-checkbox style="width: 100%"  v-for="(permiso,index) in permisos2" :key="index" :label="permiso.nombre" v-model="permiso.estado" />
+            <!--          <q-form>-->
+            <!--&lt;!&ndash;            <q-checkbox v-model="permisos" />&ndash;&gt;-->
+            <!--          </q-form>-->
             <q-btn  type="submit" color="info" icon="send" label="Actualizar"></q-btn>
           </q-form>
         </q-card-section>
@@ -240,7 +342,6 @@
 <script>
 import { date } from 'quasar'
 const { addToDate } = date
-
 export default {
   data() {
     return {
@@ -249,51 +350,56 @@ export default {
       dialog_del: false,
       filter:'',
       dato: {
-        fechalimite:date.formatDate( addToDate(new Date(),{days:90}) , 'YYYY-MM-DD')
+        fechalimite:date.formatDate( addToDate(new Date(),{days:7}) , 'YYYY-MM-DD')
       },
       model:'',
       dato2: {},
       options: [],
       props: [],
+      unidades:[],
       permisos:[],
       permisos2:[],
       modelpermiso:false,
       uni:{},
       columns: [
         {name: "name", align: "left", label: "Nombre ", field: "name", sortable: true,},
+        {name: "celular", align: "left", label: "Celular ", field: "celular", sortable: true,},
+        {name: "carnet", align: "left", label: "Carnet ", field: "carnet", sortable: true,},
+        // {name: "unid", align: "left", label: "Unidad", field: "unid", sortable: true,},
+        // {name: "codigo", align: "left", label: "Codigo", field: "codigo", sortable: true,},
         {name: "email", align: "left", label: "Email", field: "email", sortable: true,},
         {name: "fechalimite", align: "left", label: "Fecha limite", field: "fechalimite", sortable: true,
         },
-
         { name: "opcion", label: "Opcion", field: "action", sortable: false },
       ],
       data: [],
     };
   },
   created() {
-
-    if (!this.$store.state.boolusuario){
-      // this.router.push('/')
-    }
+    // if (!this.$store.state.boolusuario){
+    //   // this.router.push('/')
+    // }
     this.misdatos();
-
+    // this.$axios.get(process.env.API+'/unid').then(res=>{
+    //   // console.log(res.data)
+    //   this.unidades=res.data
+    // })
     this.$axios.get(process.env.API+'/permiso').then(res=>{
       // console.log(res.data)
       // this.permisos=res.data
       res.data.forEach(r=>{
-          this.permisos.push({id:r.id,nombre:r.nombre,estado:false});
-          this.permisos2.push({id:r.id,nombre:r.nombre,estado:false});
-      });
+        this.permisos.push({id:r.id,nombre:r.nombre,estado:false})
+        this.permisos2.push({id:r.id,nombre:r.nombre,estado:false})
+      })
     })
   },
   methods: {
-      // updatepermiso(permiso){
-      //   console.log(permiso)
-      // },
+    //   // updatepermiso(permiso){
+    //   //   console.log(permiso)
+    //   // },
     updatepermisos(){
-
       this.$axios.put(process.env.API+'/updatepermisos/'+this.dato2.id,{permisos:this.permisos2}).then(res=>{
-        console.log(res.data)
+        // console.log(res.data)
         this.modelpermiso=false
         this.misdatos()
       }).catch(err=>{
@@ -309,6 +415,7 @@ export default {
       this.modelpermiso=true
       this.dato2=i.row
       // console.log(this.dato2.permisos)
+      // return false
       let p;
       // this.permisos2.forEach(r=>{
       //
@@ -323,9 +430,6 @@ export default {
           pe.estado=false
         // console.log(p)
       })
-
-
-
     },
     misdatos() {
       this.$q.loading.show();
@@ -335,9 +439,9 @@ export default {
         this.$q.loading.hide();
       });
     },
-
     editRow(item) {
       this.dato2 = item.row
+      this.dato2.unid_id = item.row.unid
       // console.log(this.dato2)
       this.dialog_mod = true;
     },
@@ -345,19 +449,21 @@ export default {
       this.dato2 = item.row;
       this.dialog_del = true;
     },
-
     onSubmit() {
       this.$q.loading.show();
       // this.dato.unid_id=this.dato.unid_id.id;
       this.$axios.post(process.env.API + "/user", {
         name:this.dato.name,
-        celular:this.dato.celular,
-        carnet:this.dato.carnet,
         password:this.dato.password,
         email:this.dato.email,
+        celular:this.dato.celular,
+        carnet:this.dato.carnet,
+        // unid_id:this.dato.unid_id.id,
         fechalimite:this.dato.fechalimite,
+        // codigo:this.dato.codigo,
         permisos:this.permisos
       }).then((res) => {
+        // console.log(res.data)
         this.$q.notify({
           color: "green-4",
           textColor: "white",
@@ -379,37 +485,39 @@ export default {
     },
     onMod() {
       this.$q.loading.show();
-      this.$axios.put(process.env.API + "/user/" + this.dato2.id, {name:this.dato2.name,
-        celular:this.dato2.celular,
-        carnet:this.dato2.carnet,
-        password:this.dato2.password,
+      this.$axios.put(process.env.API + "/user/" + this.dato2.id, {
+        name:this.dato2.name,
+        // password:this.dato2.password,
+        // name:this.dato2.name,
         email:this.dato2.email,
+        carnet:this.dato2.carnet,
+        celular:this.dato2.celular,
         fechalimite:this.dato2.fechalimite,
+        // codigo:this.dato2.codigo,
       }).then((res) => {
-          this.$q.notify({
-            color: "green-4",
-            textColor: "white",
-            icon: "cloud_done",
-            message: "Modificado correctamente",
-          });
-          this.dialog_mod = false;
-          this.misdatos();
-        });
-    },
-
-    onDel() {
-      this.$q.loading.show();
-      this.$axios.delete(process.env.API + "/user/" + this.dato2.id)
-        .then((res) => {
         this.$q.notify({
           color: "green-4",
           textColor: "white",
           icon: "cloud_done",
-          message: "Eliminado correctamente",
+          message: "Modificado correctamente",
         });
-        this.dialog_del = false;
+        this.dialog_mod = false;
         this.misdatos();
-      }).catch(err=>{
+      });
+    },
+    onDel() {
+      this.$q.loading.show();
+      this.$axios.delete(process.env.API + "/user/" + this.dato2.id)
+        .then((res) => {
+          this.$q.notify({
+            color: "green-4",
+            textColor: "white",
+            icon: "cloud_done",
+            message: "Eliminado correctamente",
+          });
+          this.dialog_del = false;
+          this.misdatos();
+        }).catch(err=>{
         this.$q.loading.hide()
         this.$q.notify({
           message:err.response.data.message,
@@ -418,7 +526,6 @@ export default {
         })
       })
     },
-
     onReset() {
       this.dato.nombre = null;
       this.dato.inicio = 0;
@@ -434,13 +541,18 @@ export default {
           type: 'password' // optional
         },
         cancel: true,
+        persistent: true
       }).onOk(data => {
+        // console.log('>>>> OK, received', data)
         this.$q.loading.show()
         this.$axios.put(process.env.API+'/pass/'+i.row.id,{password:data}).then(res=>{
+          // console.log(res.data)
           this.$q.loading.hide()
         })
       }).onCancel(() => {
+        // console.log('>>>> Cancel')
       }).onDismiss(() => {
+        // console.log('I am triggered on both OK and Cancel')
       })
     }
   },
