@@ -14,7 +14,7 @@
             narrow-indicator
           >
             <q-tab name="login" label="Ingresar" />
-            <q-tab name="registro" label="Registrarse" />
+  <!--           <q-tab name="registro" label="Registrarse" />  -->
             <!--            <q-tab name="movies" label="Movies" />-->
           </q-tabs>
           <q-separator />
@@ -49,19 +49,20 @@
                   </div>
                   <div class="col-12 q-py-md">
                     <q-btn label="INGRESAR" color="primary" icon="login" class="full-width" type="submit"/>
-                    <q-btn label="Registrate" color="secondary" icon="how_to_reg" @click="tab='registro'" class="full-width q-mt-xs" />
-                    <div class="text-caption q-py-xs">
+<!--                 <q-btn label="Registrate" color="secondary" icon="how_to_reg" @click="tab='registro'" class="full-width q-mt-xs" />
+                    <div class="text-caption q-py-xs"> 
                       <a href="#">Olvidate tu contraseña?</a>
+                      
                     </div>
-
+-->
                   </div>
                 </div>
               </q-form>
             </q-tab-panel>
 
-            <q-tab-panel name="registro">
+<!--           <q-tab-panel name="registro">
               <div class="text-h6">Registrate </div>
-              podras realizar tu pedidos
+             podras realizar tu pedidos
               <q-form>
                 <div class="row">
                   <div class="col-12">
@@ -115,7 +116,8 @@
                   </div>
                 </div>
               </q-form>
-            </q-tab-panel>
+            </q-tab-panel>*/
+            -->
           </q-tab-panels>
         </q-card>
       </div>
