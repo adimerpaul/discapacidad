@@ -61,13 +61,14 @@ class PagoController extends Controller{
     {
         //
         //return $request;
-        if($request->responsable['id']!=null && $request->responsable['ci']!=null)
-        {
+        if($request->responsable['ci']!=null)
+        {   $res=Responsable::find($request->responsable['id']);
+            if(!$res){
             $responsable = new Responsable;
             $responsable->ci=$request->responsable['ci'];
             $responsable->nombre=$request->responsable['nombre'];
             $responsable->relacion=$request->responsable['relacion'];
-            $responsable->save();
+            $responsable->save();}
         }
         foreach ($request->pend as $uppago) {
             $pago=Pago::find($uppago['id']);
@@ -75,8 +76,10 @@ class PagoController extends Controller{
             $pago->user_id=$request->user()->id;
             $pago->foto=$request->foto;
             $pago->estado='PAGADO';
-            if($request->responsable['id']!=null)
+            if($request->responsable['ci']!=null && !$res)
                 $pago->responsable_id=$responsable->id;
+            if($request->responsable['ci']!=null && $request->responsable['id']!=null)
+                $pago->responsable_id=$request->responsable['id'];
             $pago->save();
         }
         return true;
