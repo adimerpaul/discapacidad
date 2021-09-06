@@ -104,7 +104,7 @@
             </q-item-section>
             <q-item-section>
               <q-item-label> Mis pagos </q-item-label>
-              <q-item-label caption>Control de de pagos realizados</q-item-label>
+              <q-item-label caption>MIs pagos</q-item-label>
             </q-item-section>
           </q-item>
 
