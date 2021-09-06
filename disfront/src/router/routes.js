@@ -1,6 +1,6 @@
-import Index from "../pages";
-import Login from "../pages/Login";
-import Local from "../pages/Local";
+import Index from "pages";
+import Login from "pages/Login";
+// import Local from "../pages/Local";
 import Importar from "pages/Importar";
 import User from "pages/User";
 import Pago from "pages/Pago";
