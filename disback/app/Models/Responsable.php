@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Responsable extends Model
 {
-    use HasFactory;
+    use HasFactory;  
+      protected $fillable = [
+        'ci',
+        'nombre',
+        'relacion'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

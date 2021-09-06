@@ -47,6 +47,7 @@ class PagoController extends Controller
     public function show(Pago $pago)
     {
         //
+        return Pago::where('nro',$request->nro)->where('estado','PENDIENTE')->get();
     }
 
     /**
@@ -70,6 +71,26 @@ class PagoController extends Controller
     public function update(Request $request, Pago $pago)
     {
         //
+        
+    }
+
+    public function actualizapago(Request $request){
+        if($request->responsable=='')
+            {
+                $responsable = new Responsable;
+
+            }
+            else $responsable='';
+        foreach ($request->pagos as $uppago) {
+            $pago=Pago::find($uppago->id);
+            $pago->fechapago=date('Y-m-d');
+            $pago->user_id=Auth::user()->id;
+            $pago->foto=$request->foto;
+            $pago->estado='PAGADO';
+            if($responsable!='')
+                $pago->responsable_id=$responsable->id;
+            $pago->save();
+        }   
     }
 
     /**

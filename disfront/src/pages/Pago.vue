@@ -2,6 +2,7 @@
   <q-page class="q-pa-xs">
     <q-card>
       <div class="text-h6">Pago</div>
+      
     </q-card>
   </q-page>
 </template>
