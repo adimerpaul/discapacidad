@@ -23,6 +23,8 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
     Route::post('/dia',[\App\Http\Controllers\PagoController::class,'dia']);
     Route::post('/mes',[\App\Http\Controllers\PagoController::class,'mes']);
     Route::post('/anio',[\App\Http\Controllers\PagoController::class,'anio']);
+    Route::post('/mesfaltante',[\App\Http\Controllers\PagoController::class,'mesfaltante']);
+    Route::post('/aniofaltante',[\App\Http\Controllers\PagoController::class,'aniofaltante']);
     Route::post('/me',[\App\Http\Controllers\UserController::class,'me']);
     Route::post('/mispagos',[\App\Http\Controllers\UserController::class,'mispagos']);
     Route::resource('/user',\App\Http\Controllers\UserController::class);

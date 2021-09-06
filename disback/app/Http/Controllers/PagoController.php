@@ -35,6 +35,24 @@ class PagoController extends Controller{
             ->with('user')
             ->get();
     }
+    public function mesfaltante(Request $request)
+    {
+        return Pago::where('gestion',$request->anio)
+            ->where('mes',$request->mes)
+            ->where('estado','PENDIENTE')
+            ->with('responsable')
+            ->with('user')
+            ->get();
+    }
+    public function aniofaltante(Request $request)
+    {
+        return Pago::where('gestion',$request->anio)
+//            ->whereMonth('fechapago',$request->mes)
+            ->where('estado','PENDIENTE')
+            ->with('responsable')
+            ->with('user')
+            ->get();
+    }
     public function index()
     {
         //
