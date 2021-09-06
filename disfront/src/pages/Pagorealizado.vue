@@ -56,7 +56,7 @@
                 <th>Mes</th>
                 <th>Gestion</th>
                 <th>Fecha pago</th>
-                <th>Responzable</th>
+                <th>Responsable</th>
                 <th>Usuario</th>
               </tr>
               </thead>
@@ -68,8 +68,8 @@
                 <td>{{re.mes}}</td>
                 <td>{{re.gestion}}</td>
                 <td>{{re.fechapago}}</td>
-                <td>{{re.user_id}}</td>
-                <td>{{re.user_id}}</td>
+                <td>{{re.responzable}}</td>
+                <td>{{re.usuario}}</td>
               </tr>
               </tbody>
             </table>
@@ -227,8 +227,22 @@ export default {
     misregistros(){
       this.$q.loading.show()
       this.$axios.post(process.env.API+'/dia',{dia:this.fecha}).then(res=>{
-        // console.log(res.data)
-        this.registros=res.data
+        console.log(res.data)
+        this.registros=[]
+        res.data.forEach(r=>{
+          // console.log(r)
+          this.registros.push({
+            nro:r.nro+''+r.exp,
+            razon:r.razon,
+            mes:r.mes,
+            gestion:r.gestion,
+            fechapago:r.fechapago,
+            estado:r.estado,
+            monto:r.monto,
+            responzable: r.responsable==undefined?'': r.responsable.nombre+' Parentesco:'+r.responsable.relacion,
+            usuario:r.user.name,
+          })
+        })
         $('#example').DataTable().destroy();
         this.$nextTick(()=>{
           $('#example').DataTable( {
@@ -254,7 +268,21 @@ export default {
       this.$q.loading.show()
       this.$axios.post(process.env.API+'/mes',{mes:this.mes.val,anio:this.anio}).then(res=>{
         // console.log(res.data)
-        this.registros=res.data
+        this.registros=[]
+        res.data.forEach(r=>{
+          // console.log(r)
+          this.registros.push({
+            nro:r.nro+''+r.exp,
+            razon:r.razon,
+            mes:r.mes,
+            gestion:r.gestion,
+            fechapago:r.fechapago,
+            estado:r.estado,
+            monto:r.monto,
+            responzable: r.responsable==undefined?'': r.responsable.nombre+' Parentesco:'+r.responsable.relacion,
+            usuario:r.user.name,
+          })
+        })
         $('#example').DataTable().destroy();
         this.$nextTick(()=>{
           $('#example').DataTable( {
@@ -272,7 +300,21 @@ export default {
       this.$q.loading.show()
       this.$axios.post(process.env.API+'/anio',{anio:this.anio}).then(res=>{
         // console.log(res.data)
-        this.registros=res.data
+        this.registros=[]
+        res.data.forEach(r=>{
+          // console.log(r)
+          this.registros.push({
+            nro:r.nro+''+r.exp,
+            razon:r.razon,
+            mes:r.mes,
+            gestion:r.gestion,
+            fechapago:r.fechapago,
+            estado:r.estado,
+            monto:r.monto,
+            responzable: r.responsable==undefined?'': r.responsable.nombre+' Parentesco:'+r.responsable.relacion,
+            usuario:r.user.name,
+          })
+        })
         $('#example').DataTable().destroy();
         this.$nextTick(()=>{
           $('#example').DataTable( {
