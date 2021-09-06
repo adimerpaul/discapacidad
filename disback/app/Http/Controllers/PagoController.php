@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Pago;
 use Illuminate\Http\Request;
 
-class PagoController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class PagoController extends Controller{
+    public function dia(Request $request)
+    {
+        return Pago::whereDate('fechapago',$request->dia)->get();
+    }
+    public function mes()
+    {
+        //
+    }
+    public function anio()
+    {
+        //
+    }
     public function index()
     {
         //
@@ -71,7 +77,7 @@ class PagoController extends Controller
     public function update(Request $request, Pago $pago)
     {
         //
-        
+
     }
 
     public function actualizapago(Request $request){
@@ -90,7 +96,7 @@ class PagoController extends Controller
             if($responsable!='')
                 $pago->responsable_id=$responsable->id;
             $pago->save();
-        }   
+        }
     }
 
     /**

@@ -29,7 +29,7 @@
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-      :width="200"
+      :width="250"
       :breakpoint="600"
     >
       <q-scroll-area style="height: calc(100% - 192px); margin-top: 192px; border-right: 1px solid #ddd">
