@@ -27,6 +27,10 @@ class ResponsableController extends Controller
         //
     }
 
+    public function buscaresp(Request $request){
+        return Responsable::where('ci',$request->ci)->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -30,4 +30,12 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
     Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);
     Route::resource('/permiso',\App\Http\Controllers\PermisoController::class);
 
+    Route::post('/verpendiente',[\App\Http\Controllers\PagoController::class,'verpendiente']);
+    Route::post('/buscaresp',[\App\Http\Controllers\ResponsableController::class,'buscaresp']);
+    Route::post('/upload',[\App\Http\Controllers\PagoController::class,'upload']);
+	
+    Route::resource('/pago',\App\Http\Controllers\PagoController::class);
+		
+		
+
 });

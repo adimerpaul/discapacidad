@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PagoSeeder extends Seeder
 {
@@ -14,5 +15,38 @@ class PagoSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('pagos')->insert([
+            [
+                "nro"=>"123",
+                "exp"=>"LPZ",
+                "razon"=>"JUAN"
+            ],
+            [
+                "nro"=>"123",
+                "exp"=>"LPZ",
+                "razon"=>"JUAN"
+            ],
+            [
+                "nro"=>"123",
+                "exp"=>"LPZ",
+                "razon"=>"JUAN"
+            ],
+            [
+                "nro"=>"987",
+                "exp"=>"ORU",
+                "razon"=>"MARIA"
+            ],
+            [
+                "nro"=>"987",
+                "exp"=>"ORU",
+                "razon"=>"MARIA"
+            ],
+
+            [
+                "nro"=>"987",
+                "exp"=>"ORU",
+                "razon"=>"MARIA"
+            ]
+         ]);
     }
 }

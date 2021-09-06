@@ -15,13 +15,13 @@ class CreatePagosTable extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->string("tipodoc");
+            $table->string("tipodoc")->default('CI');
             $table->string("nro");
             $table->string("exp");
             $table->string("razon");
             $table->string("banco")->default('');
             $table->string("cuenta")->default('');
-            $table->string("nrodocpago");
+            $table->string("nrodocpago")->default('');
             $table->string("mes")->default('');
             $table->string("gestion")->default('');
             $table->date("fechaaprobacion")->nullable();
