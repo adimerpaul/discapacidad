@@ -24,6 +24,7 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
     Route::post('/mes',[\App\Http\Controllers\PagoController::class,'mes']);
     Route::post('/anio',[\App\Http\Controllers\PagoController::class,'anio']);
     Route::post('/me',[\App\Http\Controllers\UserController::class,'me']);
+    Route::post('/mispagos',[\App\Http\Controllers\UserController::class,'mispagos']);
     Route::resource('/user',\App\Http\Controllers\UserController::class);
     Route::put('/pass/{user}',[\App\Http\Controllers\UserController::class,'pass']);
     Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);

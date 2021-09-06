@@ -31,6 +31,10 @@ class Pago extends Model
         'created_at',
         'updated_at',
     ];
-   
-
+    public function responsable(){
+        return $this->belongsTo(Responsable::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

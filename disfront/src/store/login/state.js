@@ -3,6 +3,12 @@ export default function () {
     status: '',
     token: localStorage.getItem('tokendisca') || '',
     user : {},
-    pedido:[]
+    pedido:[],
+    boolimportar:false,
+    boolusuarios:false,
+    boolpago:false,
+    boolpagorealizados:false,
+    boolpagosfaltantes:false,
+    boolmispagos:false,
   }
 }

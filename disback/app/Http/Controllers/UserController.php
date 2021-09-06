@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pago;
 use App\Models\User;
 use App\Models\Permiso;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class UserController extends Controller
 
         $user=User::where('email',$request->email)
 //            ->with('unid')
-//            ->with('permisos')
+            ->with('permisos')
             ->firstOrFail();
         $token=$user->createToken('auth_token')->plainTextToken;
         return response()->json(['token'=>$token,'user'=>$user],200);;
@@ -35,7 +36,7 @@ class UserController extends Controller
 //        $user=$request->user()
         $user=User::where('id',$request->user()->id)
 //            ->with('unid')
-//            ->with('permisos')
+            ->with('permisos')
             ->firstOrFail();
         return $user;
 //        return User::where('id',1)->with('unid')->get();
@@ -140,5 +141,13 @@ class UserController extends Controller
     }
     public function destroy(User $user){
         $user->delete();
+    }
+    public function mispagos(Request $request){
+        return Pago::whereDate('fechapago',$request->fecha)
+            ->where('user_id',$request->user()->id)
+            ->with('responsable')
+            ->with('user')
+            ->where('estado','PAGADO')
+            ->get();
     }
 }

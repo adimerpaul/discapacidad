@@ -29,7 +29,7 @@
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-      :width="270"
+      :width="200"
       :breakpoint="600"
     >
       <q-scroll-area style="height: calc(100% - 192px); margin-top: 192px; border-right: 1px solid #ddd">
@@ -52,7 +52,7 @@
               <q-item-label caption>Ingresar al sistema</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item to="importar"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+          <q-item to="importar"  exact clickable v-ripple v-if="$store.state.login.boolimportar">
             <q-item-section avatar>
               <q-icon name="upload" />
             </q-item-section>
@@ -61,7 +61,7 @@
               <q-item-label caption>Controlar Importacion</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item to="user"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+          <q-item to="user"  exact clickable v-ripple v-if="$store.state.login.boolusuarios">
             <q-item-section avatar>
               <q-icon name="people" />
             </q-item-section>
@@ -71,7 +71,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item to="pago"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+          <q-item to="pago"  exact clickable v-ripple v-if="$store.state.login.boolpago">
             <q-item-section avatar>
               <q-icon name="money" />
             </q-item-section>
@@ -80,7 +80,7 @@
               <q-item-label caption>Control de pagos</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item to="pagorealizado"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+          <q-item to="pagorealizado"  exact clickable v-ripple v-if="$store.state.login.boolpagorealizados">
             <q-item-section avatar>
               <q-icon name="shop" />
             </q-item-section>
@@ -89,7 +89,7 @@
               <q-item-label caption>Control de pagos</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item to="pagofaltantes"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+          <q-item to="pagofaltantes"  exact clickable v-ripple v-if="$store.state.login.boolpagosfaltantes">
             <q-item-section avatar>
               <q-icon name="code" />
             </q-item-section>
@@ -98,7 +98,7 @@
               <q-item-label caption>Control de pagos</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item to="mispagos"  exact clickable v-ripple v-if="$store.getters['login/isLoggedIn']">
+          <q-item to="mispagos"  exact clickable v-ripple v-if="$store.state.login.boolmispagos">
             <q-item-section avatar>
               <q-icon name="paid" />
             </q-item-section>

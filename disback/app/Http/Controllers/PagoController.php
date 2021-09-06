@@ -8,15 +8,29 @@ use Illuminate\Http\Request;
 class PagoController extends Controller{
     public function dia(Request $request)
     {
-        return Pago::whereDate('fechapago',$request->dia)->get();
+        return Pago::whereDate('fechapago',$request->dia)
+            ->where('estado','PAGADO')
+            ->with('responsable')
+            ->with('user')
+            ->get();
     }
-    public function mes()
+    public function mes(Request $request)
     {
-        //
+        return Pago::whereYear('fechapago',$request->anio)
+            ->whereMonth('fechapago',$request->mes)
+            ->where('estado','PAGADO')
+            ->with('responsable')
+            ->with('user')
+            ->get();
     }
-    public function anio()
+    public function anio(Request $request)
     {
-        //
+        return Pago::whereYear('fechapago',$request->anio)
+//            ->whereMonth('fechapago',$request->mes)
+            ->where('estado','PAGADO')
+            ->with('responsable')
+            ->with('user')
+            ->get();
     }
     public function index()
     {
