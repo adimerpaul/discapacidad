@@ -42,7 +42,7 @@
                 <div class="col-6 ">
                   <q-select outlined :options="anios" label="Año" v-model="anio"/>
                 </div>
-                <div class="col-6 flex flex-center">
+                <div class="col-6   ">
                   <q-btn icon="search" label="Buscar" color="negative" type="submit" />
                 </div>
               </div>

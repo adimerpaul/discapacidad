@@ -44,11 +44,11 @@
         </div>
         <h6>DATOS RESPONSABLE/TUTOR (opcional)</h6>
         <div class="row">
-            <div class="col-4"><q-input v-model="responsable.ci" type="text" label="Cedula de Identidad" @keypress="buscaresp"/></div>
+            <div class="col-4"><q-input v-model="responsable.ci" type="text" label="Cedula de Identidad" @keyup="buscaresp"/></div>
             <div class="col-4"><q-input v-model="responsable.nombre" type="text" label="Nombre Completo" /></div>
             <div class="col-4"><q-input v-model="responsable.relacion" type="text" label="Relacion" /></div>
         </div>
-        <div >
+        <div class="flex flex-center">
         <q-uploader
               style="max-width: 300px"
               label="Fotografia"
