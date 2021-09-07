@@ -90,7 +90,7 @@ class PagoController extends Controller{
         }
         foreach ($request->pend as $uppago) {
             $pago=Pago::find($uppago['id']);
-            $pago->fechapago=date('Y-m-d');
+            $pago->fechapago=date('Y-m-d H:i:s');
             $pago->user_id=$request->user()->id;
             $pago->foto=$request->foto;
             $pago->estado='PAGADO';
